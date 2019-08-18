@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <br><br><br>
+
+      
+      	<h2><%=@event.title %></h2>
+      	
+     <div class="card-body">
+          <p class="card-text"><strong>Description : </strong><%= @event.description %></p>
+          <p class="card-text"><strong>Nombre de Participants : </strong><%= @event.attendances.count %></p>
+
+          <p class="card-text"><strong>Prix : </strong><%= @event.price %> €</p>
+          <p class="card-text"><strong>Lieu de l'événement : </strong><%= @event.location %></p>
+        </div>
+
+
+        <h1>Page Profil</h1>
+
+        <p>Bienvenue sur la page d'ajout d'une photo pour l'event
+        <h3>Photo actuelle</h3>
+        <%if @event.eventpicture.attached?%>
+          <%= image_tag @event.eventpicture, alt: 'eventpicture' %>
+        <%else%>
+          <p>=== Il n'y a pas encore de photo liée à cet event ===</p>
+
+          <h3>Changer de photo ?</h3>
+          <%= form_tag event_eventpictures_path(@event), multipart: true do %>
+            <%= file_field_tag :eventpicture %>
+            <%= submit_tag "mettre à jour" %>
+          <% end %>
+
+        <%end%>
+
+      </div>
+  </div>
+</div>
+
